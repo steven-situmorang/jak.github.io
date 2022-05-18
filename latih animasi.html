@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ecomerce</title>
+    <style>
+       :root {
+      --sun: #fead03;
+      --black: #000;
+  }
+  body {
+      background-color:white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  h1 {
+      color: white;
+      position: absolute;
+      top: 140px;
+  }
+  .container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+  }
+  .sun,
+  .moon {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+  }
+
+  .sun {
+      position: absolute;
+      background-color: var(--sun);
+  }
+
+  .moon {
+      background-color: var(--black);
+      left: 160px;
+    animation: gerakan-bulan 2s infinite linear, ubah-background 2s infinite linear;
+
+       
+  }
+  @keyframes gerakan-bulan {
+      
+    0%{
+        left: 160px;
+        
+    }
+    100% {
+        left: -160px
+    }
+
+  }
+  @keyframes ubah-background {
+      0% {
+          background-color: white;
+      }
+      50% {
+          background-color: black;
+      }
+      100% {
+          background-color: white;
+      }
+  }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+        <div class="sun"></div>
+        <div class="moon"></div>
+        </div>
+    </body>
