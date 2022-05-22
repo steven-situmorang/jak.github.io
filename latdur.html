@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Validasi Form Javascript</title>
+<style>
+   html,body {
+       display: flex;
+       height: 100vh;
+       align-items: center;
+       justify-content: center;
+       background: black;
+       font-family: sans-serif;
+       overflow: hidden;
+   }
+   .outer {
+       width: 300px;
+       height: 300px;
+       background: linear-gradient(135deg,  rgb(175,245,11),rgb(28,3,251), rgb(233,4,195));
+       border-radius: 50%;
+       animation: rotate 0,25 ease infinite;
+   }
+   @keyframes rotate {
+       ty{
+           transform: rotate(360deg);
+       }
+   }
+   .inner {
+       position: absolute;
+       width: 275px;
+       height: 275px;
+       line-height: 275px;
+       text-align: center;
+       color: white;     
+       background: rgb(2,2,2);
+       border-radius: 50%;
+       cursor: default;
+   }
+   .inner span {
+       font-size: 62px;
+       font-weight: 800;
+       background: linear-gradient(rgb(175,245,11),rgb(28,3,251), rgb(233,4,195));
+       color: transparent;
+       -webkit-background-clip: text;
+       background-size: 300%;
+   }
+   
+</style>
+</head>
+<body>
+  <div class="outer"></div>
+  <div class="inner">
+  <span>100%</span>
+  </div>
+  <script>
+      let outer =document.querySelector(".outer");
+      let inner =document.querySelector(".inner");
+      let percent =document.querySelector("span");
+      let count = 20;
+      inner.addEventListener('click', function(){
+        let loading = setInterval(animate, 200);
+        function animate() {
+            if(count == 100){
+                clearInterval();
+            }else {
+                count = count + 10;
+                percent.textContent = count + '%';
+            }
+        }
+      });
+
+  </script>
+
+</body>
