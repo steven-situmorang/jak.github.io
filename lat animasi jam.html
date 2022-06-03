@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        html,body{
+           display: grid;
+           height: 100%;
+           place-items: center;
+           background: black;
+        }
+        .wrapper{
+            height: 100px;
+            width: 350px;
+            background: linear-gradient(135deg, #14ffe9, #14ffe9, #ff00e0);
+            border-radius: 10px;
+            cursor: default;
+            animation:  animate 10s linear;
+        }
+        .wrapper .display,
+        .wrapper span{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .wrapper .display{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            background: black;
+            height: 85px;
+            width: 345px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .wrapper .display #time{
+            line-height: 85px;
+            font-size: 50px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #14ffe9, #14ffe9, #ff00e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation:  animate 1.5s linear;
+        }
+        @keyframes animate{
+            100%{
+                filter: hue-rotate(360deg);
+            }
+        }
+        .wrapper span{
+            height: 100%;
+            width: 100%;
+            background: inherit;
+            border-radius: 10px;
+        }
+        .wrapper span:first-child{
+            filter: blur(10px);
+        }
+        .wrapper span:last-child{
+            filter: blur(20px);
+        }
+    </style>
+<body>
+    <div class="wrapper">
+    <div class="display">
+        <div id="time">01:45:00 PM</div>
+    </div>
+    <span></span>
+    <span></span>
+    </div>
+    <script>
+        setInterval(()=>{
+            const time = document.querySelector("#time");
+            let date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getUTCSeconds();
+            let day_night = "AM";
+            if(hours > 12){
+                day_night = "PM";
+                hours = hours-12;
+            }
+            if(minutes < 10){
+                minutes = "0" + minutes;
+            }
+            if(seconds < 10){
+                seconds = "0" + seconds;
+            }
+            time.textContent = hours + ":" + minutes + ":" + seconds + day_night;
+        });
+    </script>
+    </body>
+    </html>
