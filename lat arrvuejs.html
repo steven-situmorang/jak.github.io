@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<body>
+    <div id="app">
+        <ul>
+          <li v-for="fruit in fruits">
+            {{fruit}}
+          </li>
+        </ul>
+        <ul>
+          <li v-for="(todo, index) in todos">
+            {{parent}} {{index}} : {{ todo.text }}
+          </li>
+        </ul>
+        <ul>
+          <li v-for="bio in biodata">
+            {{bio}}
+          </li>
+        </ul>
+        <ul>
+      <!-- format ([value], [key]) -->
+          <li v-for="(value, key) in biodata">
+            {{key}}:{{value}}
+          </li>
+        </ul>
+      </div>
+      <script>
+        var app = new Vue({
+  el: '#app',
+  data: {
+    fruits: ['Apple', 'Orange', 'Mango'],
+    parent: 'Data ke-',
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ],
+    biodata: {
+      name: 'Jauhar',
+      age: '22',
+      address: 'Malang, Number 25'
+    }
+  }
+})
+</script>
+</body>
