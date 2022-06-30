@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../dist/bootstrap.css">
+</head>
+<body>
+<div class="container mt-4" id="app">
+	<div class="row" v-if="!page">
+		<div class="jumbotron">
+		  <h1 class="display-4">Hallow {{ userLogin }} </h1>
+		  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+		  <hr class="my-4">
+		  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+		  <a class="btn btn-primary btn-lg" href="logout.php" role="button">logout</a>
+		</div>
+	</div>
+	<div class="row" v-if="page">
+		<div class="col-md-12">
+			<form>
+				<div class="form-group">
+					<input type="text" name="" class="form-control" v-model="user">
+				</div>
+				<div class="form-group">
+					<input type="password" name="" class="form-control" v-model="pass">
+				</div>
+				<button class="btn btn-primary" @click.prevent="login">login</button>
+				<span class="alert alert-danger" v-if="teksNotif">{{ teksNotif }}</span>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../dist/jquery.js"></script>
+<script type="text/javascript" src="../dist/vue.js"></script>
+<script type="text/javascript">
+	var app = new Vue({
+		el: '#app',
+		data: {
+			user: null,
+			pass: null,
+			url: 'data.php',
+			teksNotif: null,
+			page: true,
+			userLogin: null
+
+		},
+		methods:{
+			showData(){
+				this.page = false
+			},
+			login(){
+				var self = this
+				$.ajax({
+					url: self.url,
+					method: 'POST',
+					data: {
+						username: self.user,
+						password: self.pass
+					}
+				})
+				.done((data)=>{
+					var result = JSON.parse(data)
+					if(result[0]){
+						this.teksNotif = null
+						this.showData()
+						this.userLogin = result[1]
+					}else{
+						this.teksNotif = result[1]
+					}
+				})
+			}
+		}
+	})
+</script>
+</body>
+</html>
