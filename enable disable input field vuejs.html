@@ -1,0 +1,24 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.0/vue.js"></script>
+</head>
+<body>
+<script>
+new Vue({
+
+  el: '#app',
+  data: {
+    isDisabled: false
+  }
+
+})
+</script> 
+<div id="app">
+
+  <input type="text" :disabled="isDisabled">
+  <button @click="isDisabled = !isDisabled">Enable/Disable</button>
+
+</div> 
+         
+</body>
+</html>                
